@@ -15,13 +15,14 @@
   <tbody>
     <% @movies.each do |movie| %>
       <tr>
-        <td><%= link_to movie.title, movie_path(movie, sort: params[:sort], direction: params[:direction]) %></td>
+        <td><%= link_to movie.title, movie %></td>
         <td><%= movie.rating %></td>
         <td><%= movie.release_date %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
 
 <%= link_to "New movie", new_movie_path(sort: params[:sort], direction: params[:direction]) %>
 
