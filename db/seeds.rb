@@ -14,9 +14,12 @@ more_movies = [
   {:title => 'Green Book', :rating => 'PG-13', :release_date => '16-Nov-2018'},
   {:title => 'Parasite', :rating => 'R', :release_date => '30-May-2019'},
   {:title => 'Nomadland', :rating => 'R', :release_date => '19-Feb-2021'},
-  {:title => 'CODA', :rating => 'PG-13', :release_date => '13-Aug-2021'}
+  {:title => 'CODA', :rating => 'PG-13', :release_date => '13-Aug-2021'},
+  {:title => 'Interstellar', :rating => 'PG-13', :release_date => '07-Nov-2014'},
+  {:title => 'The Godfather', :rating => 'R', :release_date => '24-Mar-1972'},
+  {:title => 'The Avengers', :rating => 'PG-13', :release_date => '04-May-2012'}
 ]
 
 more_movies.each do |movie|
-  Movie.create!(movie)
+  Movie.find_or_create_by!(movie)
 end
