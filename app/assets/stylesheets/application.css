@@ -14,51 +14,76 @@
  *= require_self
  */
 
-/* 表格样式 */
+/* 全局表格样式 */
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 20px;
+  margin: 20px 0;
+  font-size: 1.1em;
+  text-align: left;
 }
 
-/* 设置表头样式 */
-th {
-  padding: 10px;
-  text-align: left;
-  cursor: pointer; /* 鼠标变为手型，提示可以点击 */
+th, td {
+  padding: 12px 15px;
+}
+
+thead tr {
+  background-color: #f2f2f2;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
 }
 
 /* 高亮当前排序列 */
-th.highlight {
-  background-color: #f7f7f7;
+.highlight {
   font-weight: bold;
+  color: #3498db; /* 你可以根据需要更改颜色 */
 }
 
-/* 不同方向排序的箭头颜色 */
-th.highlight a {
-  color: black; /* 排序的列文字颜色 */
-}
-
-th.highlight a:after {
-  content: attr(data-direction);
-}
-
-/* 增加列之间的间距 */
-td, th {
-  padding: 15px;
-}
-
-/* 表格边框样式 */
-td {
-  border-bottom: 1px solid #ddd;
-}
-
-/* 鼠标悬停时的行高亮效果 */
-tr:hover {
-  background-color: #f1f1f1;
-}
-
-/* 去掉链接下划线 */
+/* 链接的基本样式 */
 a {
   text-decoration: none;
+  color: #3498db; /* 蓝色 */
 }
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* 可排序列指示样式 */
+th a {
+  color: inherit;
+  display: inline-block;
+  padding-right: 10px;
+}
+
+/* 可排序列的箭头符号 */
+th a::after {
+  content: '⇅'; /* 用于指示可排序 */
+  font-size: 0.8em;
+  padding-left: 5px;
+  color: #ccc;
+}
+
+.highlight a::after {
+  content: ''; /* 当前排序列箭头符号会被覆盖 */
+}
+
+/* 根据升序和降序方向显示的箭头 */
+th a[data-direction="asc"]::after {
+  content: '↑';
+  color: #2ecc71; /* 升序箭头为绿色 */
+}
+
+th a[data-direction="desc"]::after {
+  content: '↓';
+  color: #e74c3c; /* 降序箭头为红色 */
+}
+
+/* 行间距调整，让表格更美观 */
+td {
+  padding: 10px;
+}
+
+/* 当鼠标悬停在行上时，不需要额外的高亮效果 */
