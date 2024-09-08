@@ -26,7 +26,7 @@
       <tr>
         <td><%= link_to movie.title, movie_path(movie) %></td>
         <td><%= movie.rating %></td>
-        <td><%= movie.release_date %></td>
+        <td><%= movie.release_date.strftime("%Y-%m-%d") %></td> <!-- 格式化日期使其看起来更整洁 -->
       </tr>
     <% end %>
   </tbody>
