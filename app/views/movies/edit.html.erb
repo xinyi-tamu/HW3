@@ -2,11 +2,14 @@
 
 <h1>Editing movie</h1>
 
-<%= render "form", movie: @movie %>
+<%= form_with(model: @movie, local: true) do |form| %>
+  <!-- 隐藏字段传递排序参数 -->
+  <%= hidden_field_tag :sort, params[:sort] %>
+  <%= hidden_field_tag :direction, params[:direction] %>
+
+  <%= render "form", movie: @movie %>
+<% end %>
 
 <br>
 
-<div>
-  <%= link_to "Show this movie", @movie %> |
-  <%= link_to "Back to movies", movies_path(sort: params[:sort], direction: params[:direction]) %>
-</div>
+<%= link_to "Back to movies", movies_path(sort: params[:sort], direction: params[:direction]) %>

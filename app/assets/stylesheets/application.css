@@ -1,30 +1,16 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
-
 /* 全局表格样式 */
 table {
-  width: 100%;
+  width: 45%; /* 表格宽度自适应内容，不铺满屏幕 */
+  margin: 20px 0; /* 移除左右居中，靠左显示 */
   border-collapse: collapse;
-  margin: 20px 0;
   font-size: 1.1em;
   text-align: left;
+  table-layout: fixed; /* 使每列宽度相同 */
 }
 
 th, td {
-  padding: 12px 15px;
+  padding: 10px 12px; /* 调整填充使表格更紧凑 */
+  width: 150px; /* 将每列的宽度设为 150px，您可以根据需要调整 */
 }
 
 thead tr {
@@ -35,16 +21,20 @@ tbody tr:nth-child(even) {
   background-color: #f9f9f9;
 }
 
-/* 高亮当前排序列 */
-.highlight {
-  font-weight: bold;
-  color: #3498db; /* 你可以根据需要更改颜色 */
+/* 高亮当前排序列的背景颜色 */
+.highlight-asc {
+  background-color: #e5f0f5; /* 高亮的背景颜色 */
+}
+
+/* 高亮当前降序排序列 */
+.highlight-desc {
+  background-color: #f8e1bf; /* 轻橙色 */
 }
 
 /* 链接的基本样式 */
 a {
   text-decoration: none;
-  color: #3498db; /* 蓝色 */
+  color: #000000;
 }
 
 a:hover {
@@ -86,4 +76,20 @@ td {
   padding: 10px;
 }
 
-/* 当鼠标悬停在行上时，不需要额外的高亮效果 */
+/* 按钮样式 */
+.button {
+  display: inline-block;
+  padding: 6px 14px; /* 让按钮有足够的点击区域 */
+  background-color: #48a0db; /* 按钮背景颜色 */
+  color: white; /* 按钮文字颜色 */
+  border-radius: 5px; /* 圆角 */
+  text-decoration: none; /* 移除下划线 */
+  font-weight: bold; /* 让按钮文字加粗 */
+  text-align: center; /* 文字居中 */
+}
+
+.button:hover {
+  background-color: #378ec8; /* 鼠标悬停时按钮背景颜色 */
+  text-decoration: underline; /* 鼠标悬停时按钮文字下划线 */
+}
+

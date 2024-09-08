@@ -3,6 +3,8 @@ class MoviesController < ApplicationController
 
   # GET /movies or /movies.json
   def index
+    params[:sort] ||= 'title'
+    params[:direction] ||= 'asc'
     @movies = Movie.order("#{sort_column} #{sort_direction}")
   end
 
@@ -19,13 +21,13 @@ class MoviesController < ApplicationController
   def edit
   end
 
-  # POST /movies or /movies.json
   def create
     @movie = Movie.new(movie_params)
 
     respond_to do |format|
       if @movie.save
-        format.html { redirect_to movie_url(@movie), notice: "Movie was successfully created." }
+        # 在保存成功后，使用排序参数进行重定向
+        format.html { redirect_to movies_path(sort: params[:sort], direction: params[:direction]), notice: "Movie was successfully created." }
         format.json { render :show, status: :created, location: @movie }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -34,11 +36,12 @@ class MoviesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /movies/1 or /movies/1.json
+
   def update
     respond_to do |format|
       if @movie.update(movie_params)
-        format.html { redirect_to movie_url(@movie), notice: "Movie was successfully updated." }
+        # 在更新成功后，使用排序参数进行重定向
+        format.html { redirect_to movies_path(sort: params[:sort], direction: params[:direction]), notice: "Movie was successfully updated." }
         format.json { render :show, status: :ok, location: @movie }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -47,15 +50,16 @@ class MoviesController < ApplicationController
     end
   end
 
-  # DELETE /movies/1 or /movies/1.json
   def destroy
     @movie.destroy!
 
     respond_to do |format|
-      format.html { redirect_to movies_url, notice: "Movie was successfully destroyed." }
+      # 在删除成功后，使用排序参数进行重定向
+      format.html { redirect_to movies_path(sort: params[:sort], direction: params[:direction]), notice: "Movie was successfully destroyed." }
       format.json { head :no_content }
     end
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -71,7 +75,7 @@ class MoviesController < ApplicationController
     # Sorting helper methods
     def sort_column
       # Verify that the sort column exists in the movie table to prevent SQL injection.
-      Movie.column_names.include?(params[:sort]) ? params[:sort] : "rating"
+      Movie.column_names.include?(params[:sort]) ? params[:sort] : "title"
     end
 
     def sort_direction
