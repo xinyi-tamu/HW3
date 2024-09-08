@@ -1,10 +1,16 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @movie %>
+<div class="movie-details">
+  <h2>Movie Details</h2>
 
-<div>
-  <%= link_to "Edit this movie", edit_movie_path(@movie, sort: params[:sort], direction: params[:direction]) %> |
-  <%= link_to "Back to movies", movies_path(sort: params[:sort], direction: params[:direction]) %>
+  <p><strong>Title:</strong> <%= @movie.title.present? ? @movie.title : "Untitled" %></p>
+  <p><strong>Rating:</strong> <%= @movie.rating %></p>
+  <p><strong>Release date:</strong> <%= @movie.release_date.strftime("%Y-%m-%d") %></p>
+</div>
 
-  <%= button_to "Destroy this movie", movie_path(@movie, sort: params[:sort], direction: params[:direction]), method: :delete %>
+<div class="movie-actions">
+  <%= link_to "Edit this movie", edit_movie_path(@movie, sort: params[:sort], direction: params[:direction])%> |
+  <%= link_to "Back to movies", movies_path(sort: params[:sort], direction: params[:direction])%>
+
+  <%= button_to "Destroy this movie", movie_path(@movie, sort: params[:sort], direction: params[:direction]), method: :delete, class: "button" %>
 </div>

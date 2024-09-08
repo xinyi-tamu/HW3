@@ -26,7 +26,7 @@ class MoviesController < ApplicationController
 
     respond_to do |format|
       if @movie.save
-        # 在保存成功后，使用排序参数进行重定向
+      
         format.html { redirect_to movies_path(sort: params[:sort], direction: params[:direction]), notice: "Movie was successfully created." }
         format.json { render :show, status: :created, location: @movie }
       else
@@ -40,7 +40,7 @@ class MoviesController < ApplicationController
   def update
     respond_to do |format|
       if @movie.update(movie_params)
-        # 在更新成功后，使用排序参数进行重定向
+       
         format.html { redirect_to movies_path(sort: params[:sort], direction: params[:direction]), notice: "Movie was successfully updated." }
         format.json { render :show, status: :ok, location: @movie }
       else
@@ -74,12 +74,10 @@ class MoviesController < ApplicationController
   
     # Sorting helper methods
     def sort_column
-      # Verify that the sort column exists in the movie table to prevent SQL injection.
       Movie.column_names.include?(params[:sort]) ? params[:sort] : "title"
     end
 
     def sort_direction
-      # Ensure that the direction is either "asc" or "desc" to prevent SQL injection.
       %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
 

@@ -26,7 +26,8 @@
     <%= form.text_field :release_date %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div style="margin-top: 15px;">
+    <%= form.submit movie.new_record? ? "Create Movie" : "Update Movie", class: "button" %>
   </div>
+
 <% end %>

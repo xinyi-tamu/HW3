@@ -26,17 +26,18 @@
     <% @movies.each do |movie| %>
       <tr>
         <td class="<%= params[:sort] == 'title' && params[:direction] == 'asc' ? 'highlight-asc' : params[:sort] == 'title' && params[:direction] == 'desc' ? 'highlight-desc' : '' %>">
-          <%= link_to movie.title, movie_path(movie, sort: params[:sort], direction: params[:direction]) %> <!-- 确保链接传递排序参数 -->
+          
+          <%= link_to movie.title.presence || "Untitled", movie_path(movie, sort: params[:sort], direction: params[:direction]) %>
         </td>
         <td class="<%= params[:sort] == 'rating' && params[:direction] == 'asc' ? 'highlight-asc' : params[:sort] == 'rating' && params[:direction] == 'desc' ? 'highlight-desc' : '' %>">
           <%= movie.rating %>
         </td>
         <td class="<%= params[:sort] == 'release_date' && params[:direction] == 'asc' ? 'highlight-asc' : params[:sort] == 'release_date' && params[:direction] == 'desc' ? 'highlight-desc' : '' %>">
-          <%= movie.release_date.strftime("%Y-%m-%d") %>
+          <%= movie.release_date ? movie.release_date.strftime("%Y-%m-%d") : 'N/A' %> 
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= link_to "New movie", new_movie_path(sort: params[:sort], direction: params[:direction]), class: "button" %> <!-- 确保传递排序参数 -->
+<%= link_to "New movie", new_movie_path(sort: params[:sort], direction: params[:direction]), class: "button" %> 
