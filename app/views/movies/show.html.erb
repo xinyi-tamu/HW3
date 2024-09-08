@@ -3,8 +3,8 @@
 <%= render @movie %>
 
 <div>
-  <%= link_to "Edit this movie", edit_movie_path(@movie) %> |
-  <%= link_to "Back to movies", movies_path %>
+  <%= link_to "Edit this movie", edit_movie_path(@movie, sort: params[:sort], direction: params[:direction]) %> |
+  <%= link_to "Back to movies", movies_path(sort: params[:sort], direction: params[:direction]) %>
 
-  <%= button_to "Destroy this movie", @movie, method: :delete %>
+  <%= button_to "Destroy this movie", movie_path(@movie, sort: params[:sort], direction: params[:direction]), method: :delete %>
 </div>

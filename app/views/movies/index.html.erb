@@ -4,23 +4,24 @@
 
 <h1>Movies</h1>
   
-<table style="border-collapse: collapse; width: 100%; text-align: left;">
+<table>
   <thead>
     <tr>
-      <th style="padding: 10px; border-bottom: 2px solid #ccc;">Title</th>
-      <th style="padding: 10px; border-bottom: 2px solid #ccc;">Rating</th>
-      <th style="padding: 10px; border-bottom: 2px solid #ccc;">Release Date</th>
+      <th><%= link_to "Title", movies_path(sort: "title", direction: toggle_direction("title")) %></th>
+      <th><%= link_to "Rating", movies_path(sort: "rating", direction: toggle_direction("rating")) %></th>
+      <th><%= link_to "Release Date", movies_path(sort: "release_date", direction: toggle_direction("release_date")) %></th>
     </tr>
   </thead>
   <tbody>
     <% @movies.each do |movie| %>
       <tr>
-        <td style="padding: 10px; border-bottom: 1px solid #eee;"><%= link_to movie.title, movie %></td>
-        <td style="padding: 10px; border-bottom: 1px solid #eee;"><%= movie.rating %></td>
-        <td style="padding: 10px; border-bottom: 1px solid #eee;"><%= movie.release_date %></td>
+        <td><%= link_to movie.title, movie_path(movie, sort: params[:sort], direction: params[:direction]) %></td>
+        <td><%= movie.rating %></td>
+        <td><%= movie.release_date %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= link_to "New movie", new_movie_path %>
+<%= link_to "New movie", new_movie_path(sort: params[:sort], direction: params[:direction]) %>
+

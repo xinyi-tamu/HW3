@@ -3,7 +3,7 @@ class MoviesController < ApplicationController
 
   # GET /movies or /movies.json
   def index
-    @movies = Movie.all
+    @movies = Movie.order("#{sort_column} #{sort_direction}")
   end
 
   # GET /movies/1 or /movies/1.json
@@ -66,5 +66,24 @@ class MoviesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def movie_params
       params.require(:movie).permit(:title, :rating, :description, :release_date)
+    end
+  
+    # Sorting helper methods
+    def sort_column
+      # Verify that the sort column exists in the movie table to prevent SQL injection.
+      Movie.column_names.include?(params[:sort]) ? params[:sort] : "title"
+    end
+
+    def sort_direction
+      # Ensure that the direction is either "asc" or "desc" to prevent SQL injection.
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+    end
+
+    def toggle_direction(column)
+      if params[:sort] == column && params[:direction] == "asc"
+        "desc"
+      else
+        "asc"
+      end
     end
 end
