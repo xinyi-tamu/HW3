@@ -71,7 +71,7 @@ class MoviesController < ApplicationController
     # Sorting helper methods
     def sort_column
       # Verify that the sort column exists in the movie table to prevent SQL injection.
-      Movie.column_names.include?(params[:sort]) ? params[:sort] : "title"
+      Movie.column_names.include?(params[:sort]) ? params[:sort] : "rating"
     end
 
     def sort_direction
