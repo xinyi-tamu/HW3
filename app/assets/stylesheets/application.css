@@ -13,3 +13,52 @@
  *= require_tree .
  *= require_self
  */
+
+/* 表格样式 */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+/* 设置表头样式 */
+th {
+  padding: 10px;
+  text-align: left;
+  cursor: pointer; /* 鼠标变为手型，提示可以点击 */
+}
+
+/* 高亮当前排序列 */
+th.highlight {
+  background-color: #f7f7f7;
+  font-weight: bold;
+}
+
+/* 不同方向排序的箭头颜色 */
+th.highlight a {
+  color: black; /* 排序的列文字颜色 */
+}
+
+th.highlight a:after {
+  content: attr(data-direction);
+}
+
+/* 增加列之间的间距 */
+td, th {
+  padding: 15px;
+}
+
+/* 表格边框样式 */
+td {
+  border-bottom: 1px solid #ddd;
+}
+
+/* 鼠标悬停时的行高亮效果 */
+tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* 去掉链接下划线 */
+a {
+  text-decoration: none;
+}
