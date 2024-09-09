@@ -123,3 +123,10 @@ input[type="text"]:focus, input[type="number"]:focus, input[type="date"]:focus {
   margin: 5px 0;
   font-size: 1.1em;
 }
+
+td a {
+  text-decoration: underline; /* 为电影名字链接添加下划线 */
+}
+td a:hover {
+  text-decoration: none; /* 在鼠标悬停时移除下划线 */
+}
